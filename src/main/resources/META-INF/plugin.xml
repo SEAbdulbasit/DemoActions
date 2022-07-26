@@ -13,7 +13,7 @@
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
-    <description>sdfdsfd</description>
+    <description>This is the description. It's minimun length should be 40 character</description>
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
@@ -21,16 +21,32 @@
 
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <applicationListeners>
+        <listener class="com.example.demo.maxopenproject.ProjectOpenCloseListener"
+                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
+    </applicationListeners>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="com.example.demo.maxopenproject.ProjectCountingService"/>
+    </extensions>
 
     <actions>
-        <!-- <action id="org.intellij.sdk.action.PopupDialogAction" class="com.example.demo.PopupDialogAction"
-                 text="Action Basics Plugin: Pop Dialog Action" description="SDK action example"
-                 >
-             <add-to-group group-id="ToolsMenu" anchor="first"/>
-         </action>-->
-        <action id="DemoAction" class="com.example.demo.DemoAction"
-                text="Action Basics Plugin Demo: Pop Dialog Action" description="SDK action example">
-            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        <action id="com.example.demo.demoaction.DemoAction" class="com.example.demo.demoaction.DemoAction"
+                text="Demo Action" description="SDK action example">
+            <synonym text="Demo Action"/>
+            <add-to-group group-id="HelpMenu" anchor="first"/>
         </action>
+
+        <group id="new_group"
+               text="New Group"
+               description="New Toolbar Menu">
+            <add-to-group group-id="MainMenu" anchor="last"/>
+            <action id="com.example.demo.demoaction.DemoActionWithCustomGroup"
+                    class="com.example.demo.demoaction.DemoAction"
+                    icon="SdkIcons.Sdk_default_icon"
+                    text="Group Action Demo" description="Group Action">
+                <synonym text="Group Demo Action"/>
+            </action>
+        </group>
     </actions>
 </idea-plugin>
