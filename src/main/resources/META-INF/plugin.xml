@@ -42,8 +42,7 @@
                description="New Toolbar Menu">
             <add-to-group group-id="MainMenu" anchor="last"/>
             <action id="com.example.demo.demoaction.DemoActionWithCustomGroup"
-                    class="com.example.demo.demoaction.DemoAction"
-                    icon="SdkIcons.Sdk_default_icon"
+                    class="com.example.demo.demoaction.DemoActionWithCustomGroup"
                     text="Group Action Demo" description="Group Action">
                 <synonym text="Group Demo Action"/>
             </action>
